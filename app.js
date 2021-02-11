@@ -48,6 +48,7 @@ const tasks = [
   // Events
   renderAllTasks(objOfTasks);
   form.addEventListener("submit", formSubmitHandler);
+  listContainer.addEventListener("click", onDeleteHandler);
 
   function renderAllTasks(listTasks) {
     if (!listTasks) {
@@ -72,6 +73,7 @@ const tasks = [
       "flex-wrap",
       "mt-2"
     );
+    li.setAttribute("data-task-id", _id);
 
     const span = document.createElement("span");
     span.textContent = title;
@@ -117,5 +119,27 @@ const tasks = [
 
     objOfTasks[newTask._id] = newTask;
     return { ...newTask };
+  }
+
+  function deleteTaskHTML(confirmed, el) {
+    if (!confirmed) return;
+    el.remove();
+  }
+
+  function deleteTask(id) {
+    const { title } = objOfTasks[id];
+    const isConfirm = confirm(`Вы точно хотите удалить задачу: ${title}`);
+    if (!isConfirm) return isConfirm;
+    delete objOfTasks[id];
+    return isConfirm;
+  }
+
+  function onDeleteHandler({ target }) {
+    if (target.classList.contains("delete-btn")) {
+      const parent = target.closest("[data-task-id]");
+      const id = parent.dataset.taskId;
+      const confirmed = deleteTask(id);
+      deleteTaskHTML(confirmed, parent);
+    }
   }
 })(tasks);
