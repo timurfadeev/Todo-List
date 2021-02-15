@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>Todo List</title>
   <head>
+    <title>Todo List</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -11,8 +11,19 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <nav class="header navbar navbar-dark bg-primary">
+      <a class="navbar-brand">Navbar</a>
+      <form class="form-inline">
+        <select class="form-control form-control-sm" id="themeSelect">
+          <option value="default">Theme Default</option>
+          <option value="light">Theme Light</option>
+          <option value="dark">Theme Dark</option>
+        </select>
+      </form>
+    </nav>
     <div class="form-section mt-5">
       <div class="container">
         <div class="row">
@@ -50,6 +61,6 @@
         <ul class="list-group"></ul>
       </div>
     </div>
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
